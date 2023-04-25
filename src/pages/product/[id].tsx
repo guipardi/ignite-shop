@@ -5,6 +5,8 @@ import { stripe } from "../../lib/stripe";
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 import { priceFormatter } from "@/src/utils/formatter";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { useState } from "react";
 
 interface ProductProps {
   product: {
@@ -18,8 +20,25 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  function handleBuyProduct() {
-    console.log(product.defaultPriceId)
+  const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] = useState(false)
+
+  async function handleBuyProduct() {
+    try { 
+      setIsCreatingCheckoutSection(true)
+
+      const response = await axios.post('/api/checkout', {
+        priceId: product.defaultPriceId
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl
+
+    } catch(err) {
+      /* Conectar com uma ferramente de observabilidade (datadog/sentry) */
+      setIsCreatingCheckoutSection(true)
+      alert('Não foi possível direcionar para a página de checkout.')
+    }
   }
 
   return (
@@ -34,7 +53,7 @@ export default function Product({ product }: ProductProps) {
 
         <p>{product.description}</p>
 
-        <button onClick={handleBuyProduct}>
+        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSection}>
           Comprar agora
         </button>
       </ProductDetails>
