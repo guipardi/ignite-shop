@@ -4,7 +4,6 @@ import Stripe from "stripe";
 import { stripe } from "../../lib/stripe";
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 import { priceFormatter } from "@/src/utils/formatter";
-import { useRouter } from "next/router";
 import axios from "axios";
 import { useState } from "react";
 import Head from "next/head";
