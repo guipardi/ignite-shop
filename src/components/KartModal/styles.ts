@@ -4,7 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 export const Content = styled(Dialog.Content, {
   display: 'flex',
   width: '480px',
-  height: '900px',
+  height: '100vh',
 
   backgroundColor: '$gray800',
   position: 'absolute',
