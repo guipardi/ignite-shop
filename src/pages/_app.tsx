@@ -6,6 +6,7 @@ import logoImg from '../assets/logo.svg'
 import { Container, Header } from "../styles/pages/app"
 import { Tote } from "phosphor-react"
 import { KartModal } from "../components/KartModal"
+import Link from "next/link"
 
 globalStyles()
 
@@ -13,7 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Container>
       <Header>
-        <Image src={logoImg} alt=""/>
+        <Link href='/'>
+          <Image src={logoImg} alt=""/>
+        </Link>
         <Dialog.Root>
           <Dialog.Trigger asChild={true}>
             <div><Tote size={24}/></div>
