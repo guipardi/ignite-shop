@@ -12,6 +12,10 @@ export const Content = styled(Dialog.Content, {
   top: '0',
   bottom: '0',
   boxShadow: '-4px 0px 30px rgba(0, 0, 0, 0.8)',
+
+  '&:focus': {
+    outline: 'transparent'
+  }
 })
 
 export const Title = styled(Dialog.Title, {
