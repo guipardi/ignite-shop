@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { X } from 'phosphor-react'
-import { Content } from './styles'
+import { CloseButton, Content, Title } from './styles'
 
 export function KartModal() {
   return (
@@ -8,13 +8,13 @@ export function KartModal() {
 
       <Content>
 
-        <Dialog.Title>Sacola de compras</Dialog.Title>
+        <Title>Sacola de compras</Title>
 
-        <Dialog.Close>
-          <X size={32}/>
-        </Dialog.Close>
+        <CloseButton asChild>
+          <X height={32} width={32}/>
+        </CloseButton>
 
-        <h1>items</h1>
+        
 
       </Content>
 
