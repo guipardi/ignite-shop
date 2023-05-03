@@ -21,24 +21,16 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
   const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] = useState(false)
+  const [productsInKart, setProductsInKart] = useState([{}])
 
-  async function handleBuyProduct() {
-    try { 
-      setIsCreatingCheckoutSection(true)
+  async function handleAddProductInKart() {
+    setIsCreatingCheckoutSection(true)
 
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId
-      })
-
-      const { checkoutUrl } = response.data
-
-      window.location.href = checkoutUrl
-
-    } catch(err) {
-      /* Conectar com uma ferramente de observabilidade (datadog/sentry) */
-      setIsCreatingCheckoutSection(true)
-      alert('Não foi possível direcionar para a página de checkout.')
-    }
+    setProductsInKart([...productsInKart, {
+      name: product.name,
+      price: product.price,
+      imgUrl: product.imageUrl
+    }])
   }
 
   return (
@@ -58,8 +50,8 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSection}>
-            Comprar agora
+          <button onClick={handleAddProductInKart} disabled={isCreatingCheckoutSection}>
+            Adicionar ao carrinho
           </button>
         </ProductDetails>
       </ProductContainer>
