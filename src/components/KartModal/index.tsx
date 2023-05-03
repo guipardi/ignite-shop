@@ -2,10 +2,11 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { X } from 'phosphor-react'
 import { CartsContainer, CloseButton, Content, ProductInfo, Title } from './styles'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { KartContext } from '@/src/context/KartContext'
 
 export function KartModal() {
-  const [products, setProducts] = useState([])
+  const { productsInKart } = useContext(KartContext)
 
   return (
     <Dialog.Portal>
@@ -18,7 +19,7 @@ export function KartModal() {
           <X height={32} width={32}/>
         </CloseButton>
 
-        {products.map(product => {
+        {productsInKart.map(product => {
           return (
             <CartsContainer key={product}>
               <Image alt=''/>

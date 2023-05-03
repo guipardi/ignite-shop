@@ -7,6 +7,7 @@ import { Container, Header } from "../styles/pages/app"
 import { Tote } from "phosphor-react"
 import { KartModal } from "../components/KartModal"
 import Link from "next/link"
+import { KartProvider } from "../context/KartContext"
 
 globalStyles()
 
@@ -25,7 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <KartModal />
         </Dialog.Root>
       </Header>
-      <Component {...pageProps} />
+      <KartProvider>
+        <Component {...pageProps} />
+      </KartProvider>
     </Container>
   )
 }

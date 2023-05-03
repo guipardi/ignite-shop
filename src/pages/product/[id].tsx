@@ -5,8 +5,9 @@ import { stripe } from "../../lib/stripe";
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 import { priceFormatter } from "@/src/utils/formatter";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Head from "next/head";
+import { KartContext } from "@/src/context/KartContext";
 
 interface ProductProps {
   product: {
@@ -20,17 +21,10 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] = useState(false)
-  const [productsInKart, setProductsInKart] = useState([{}])
+  const { addProductInKart, isCreatingCheckoutSection } = useContext(KartContext)
 
-  async function handleAddProductInKart() {
-    setIsCreatingCheckoutSection(true)
-
-    setProductsInKart([...productsInKart, {
-      name: product.name,
-      price: product.price,
-      imgUrl: product.imageUrl
-    }])
+  function handleAddProductInKart() {
+    addProductInKart(product)
   }
 
   return (
@@ -50,7 +44,7 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button onClick={handleAddProductInKart} disabled={isCreatingCheckoutSection}>
+          <button onClick={handleAddProductInKart} /* disabled={isCreatingCheckoutSection} */>
             Adicionar ao carrinho
           </button>
         </ProductDetails>
