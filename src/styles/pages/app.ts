@@ -27,7 +27,7 @@ export const Header = styled('header', {
     backgroundColor: '$gray800',
     borderRadius: '6px',
     cursor: 'pointer',
-    position: 'relative', 
+    position: 'relative',
 
     span: {
       width: '24px',
@@ -37,7 +37,9 @@ export const Header = styled('header', {
       top: '-7px',
       backgroundColor: '$green500',
       left: '31px',
-      textAlign: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }
   },
 })
