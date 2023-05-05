@@ -20,7 +20,7 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const { addProductInKart, isCreatingCheckoutSection } = useContext(KartContext)
+  const { addProductInKart } = useContext(KartContext)
 
   function handleAddProductInKart() {
     addProductInKart(product)
@@ -43,7 +43,7 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button onClick={handleAddProductInKart} disabled={isCreatingCheckoutSection}>
+          <button onClick={handleAddProductInKart}>
             Adicionar ao carrinho
           </button>
         </ProductDetails>

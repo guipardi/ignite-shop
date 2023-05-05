@@ -11,7 +11,6 @@ interface KartProviderProps {
 }
 
 interface KartContext {
-  isCreatingCheckoutSection: any,
   addProductInKart: (product: Product) => void,
   productsInKart: Product[],
   deleteProduct: (productName: string) => void
@@ -20,12 +19,9 @@ interface KartContext {
 export const KartContext = createContext({} as KartContext)
 
 export function KartProvider({ children }: KartProviderProps) {
-  const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] = useState(false)
   const [productsInKart, setProductsInKart] = useState<Product[]>([])
 
   function addProductInKart(product: Product) {
-    setIsCreatingCheckoutSection(true)
-
     const newProduct: Product = {
       name: product.name,
       price: product.price,
@@ -46,7 +42,7 @@ export function KartProvider({ children }: KartProviderProps) {
 
   return (
     <KartContext.Provider
-      value={{ isCreatingCheckoutSection, addProductInKart, productsInKart, deleteProduct }}
+      value={{ addProductInKart, productsInKart, deleteProduct }}
     >
       {children}
     </KartContext.Provider>
