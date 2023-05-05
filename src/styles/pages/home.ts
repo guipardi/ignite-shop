@@ -61,3 +61,22 @@ export const Product = styled('div', {
     }
   }
 })
+
+export const FooterDivInfo = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+})
+
+export const FooterButtonTote = styled('button', {
+  width: '56px',
+  height: '56px',
+  backgroundColor: '$green500',
+  borderRadius: '6px',
+  color: '$white',
+  border: 'none',
+  cursor: 'pointer',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+})

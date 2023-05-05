@@ -1,4 +1,4 @@
-import { HomeContainer, Product } from "../styles/pages/home";
+import { FooterDivInfo, FooterButtonTote, HomeContainer, Product } from "../styles/pages/home";
 import { useKeenSlider } from "keen-slider/react"
 import { GetStaticProps } from "next";
 import { stripe } from "../lib/stripe";
@@ -9,23 +9,32 @@ import Image from "next/image"
 import 'keen-slider/keen-slider.min.css'
 import { priceFormatter } from "../utils/formatter";
 import Head from "next/head";
+import { Tote } from "phosphor-react";
+import { useContext } from "react";
+import { KartContext } from "../context/KartContext";
 
 interface HomeProps {
   products: {
     id: string,
     name: string,
-    imageUrl: string,
+    imgUrl: string,
     price: number,
   }[]
 }
 
 export default function Home({ products }: HomeProps) {
+  const { addProductInKart } = useContext(KartContext)
+
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
       spacing: 48,
     }
   })
+
+  function handleAddProductInKart(product: any) {
+    addProductInKart(product)
+  }
 
   return (
     <>
@@ -43,11 +52,16 @@ export default function Home({ products }: HomeProps) {
               prefetch={false}
             >
               <Product className="keen-slider__slide">
-                <Image src={product.imageUrl} width={520} height={480} alt=""/>
+                <Image src={product.imgUrl} width={520} height={480} alt=""/>
 
                 <footer>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <FooterDivInfo>
+                    <strong>{product.name}</strong>
+                    <span>{product.price}</span>
+                  </FooterDivInfo>
+                  <FooterButtonTote onClick={() => handleAddProductInKart(product)}>
+                    <Tote size={24}/>
+                  </FooterButtonTote>
                 </footer>
               </Product>
             </Link>
@@ -69,7 +83,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
       id: product.id,
       name: product.name,
-      imageUrl: product.images[0],
+      imgUrl: product.images[0],
       price: priceFormatter.format(price.unit_amount! / 100),
     }
   })
