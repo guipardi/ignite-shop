@@ -6,11 +6,17 @@ interface KartContext {
   productsInKart: any
 }
 
+interface Product {
+  name: string,
+  price: string,
+  imgUrl: string,
+}
+
 export const KartContext = createContext({} as KartContext)
 
 export function KartProvider({ children }: any) {
   const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] = useState(false)
-  const [productsInKart, setProductsInKart] = useState([{}])
+  const [productsInKart, setProductsInKart] = useState<Product>([] as Product)
 
   function addProductInKart(product: any) {
     setIsCreatingCheckoutSection(true)

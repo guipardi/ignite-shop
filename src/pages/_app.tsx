@@ -13,22 +13,24 @@ globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Container>
-      <Header>
-        <Link href='/'>
-          <Image src={logoImg} alt=""/>
-        </Link>
-        <Dialog.Root>
-          <Dialog.Trigger asChild={true}>
-            <div><Tote size={24}/></div>
-          </Dialog.Trigger>
+    <KartProvider>
+      <Container>
+        <Header>
+          <Link href='/'>
+            <Image src={logoImg} alt=""/>
+          </Link>
+          <Dialog.Root>
+            <Dialog.Trigger asChild={true}>
+              <div><Tote size={24}/></div>
+            </Dialog.Trigger>
 
-          <KartModal />
-        </Dialog.Root>
-      </Header>
-      <KartProvider>
+            <KartModal />
+          </Dialog.Root>
+        </Header>
+        
         <Component {...pageProps} />
-      </KartProvider>
-    </Container>
+     
+      </Container>
+    </KartProvider>
   )
 }

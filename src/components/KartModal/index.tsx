@@ -19,7 +19,7 @@ export function KartModal() {
           <X height={32} width={32}/>
         </CloseButton>
 
-        {productsInKart.map(product => {
+        {productsInKart.length > 0 && productsInKart.map(product => {
           return (
             <CartsContainer key={product}>
               <Image alt=''/>
