@@ -21,13 +21,13 @@ export function KartModal() {
 
         {productsInKart.length > 0 && productsInKart.map(product => {
           return (
-            <CartsContainer key={product}>
-              <Image alt=''/>
+            <CartsContainer key={product.name}>
+              <Image src={product.imgUrl} alt='' width={24} height={24}/>
 
               <ProductInfo>
-                <p>Camiseta Explorer</p>
+                <p>{product.name}</p>
 
-                <span>79,90</span>
+                <span>{product.price}</span>
 
                 <button>Remover</button>
               </ProductInfo>
