@@ -79,3 +79,49 @@ export const ProductInfo = styled('div', {
     cursor: 'pointer'
   }
 })
+
+export const AmountDiv = styled('div', {
+  marginLeft: '42px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginRight: '42px'
+})
+
+export const CostDiv = styled('div', {
+  marginLeft: '42px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginRight: '42px',
+  marginBottom: '57px',
+  marginTop: '7px',
+
+  p: {
+    fontWeight: 'bold',
+  },
+
+  strong: {
+    fontSize: '24px',
+  },
+})
+
+export const CheckoutButton = styled('button', {
+  width: '400px',
+  margin: '0 42px 0 42px',
+  padding: '20px 32px 20px 32px',
+  backgroundColor: '$green500',
+  border: 'none',
+  borderRadius: '8px',
+  color: '$white',
+  cursor: 'pointer',
+})
+
+export const Separator = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  height: '100vh',
+})
+
+export const FinalizationDiv = styled('div', {
+  marginBottom: '48px'
+})
