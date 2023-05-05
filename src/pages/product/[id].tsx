@@ -4,7 +4,6 @@ import Stripe from "stripe";
 import { stripe } from "../../lib/stripe";
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 import { priceFormatter } from "@/src/utils/formatter";
-import axios from "axios";
 import { useContext, useState } from "react";
 import Head from "next/head";
 import { KartContext } from "@/src/context/KartContext";
@@ -13,7 +12,7 @@ interface ProductProps {
   product: {
     id: string
     name: string
-    imageUrl: string
+    imgUrl: string
     price: string
     description: string
     defaultPriceId: string
@@ -35,7 +34,7 @@ export default function Product({ product }: ProductProps) {
 
       <ProductContainer>
         <ImageContainer>
-          <Image src={product.imageUrl} width={520} height={480} alt="" />
+          <Image src={product.imgUrl} width={520} height={480} alt="" />
         </ImageContainer>
 
         <ProductDetails>
@@ -44,7 +43,7 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button onClick={handleAddProductInKart} /* disabled={isCreatingCheckoutSection} */>
+          <button onClick={handleAddProductInKart} disabled={isCreatingCheckoutSection}>
             Adicionar ao carrinho
           </button>
         </ProductDetails>
@@ -79,7 +78,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
       product: {
         id: product.id,
         name: product.name,
-        imageUrl: product.images[0],
+        imgUrl: product.images[0],
         price: priceFormatter.format(price.unit_amount! / 100),
         description: product.description,
         defaultPriceId: price.id,

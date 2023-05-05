@@ -1,3 +1,4 @@
+import { before } from "node:test";
 import { styled } from "..";
 
 export const Container = styled('div', {
@@ -26,5 +27,17 @@ export const Header = styled('header', {
     backgroundColor: '$gray800',
     borderRadius: '6px',
     cursor: 'pointer',
-  }
+    position: 'relative', 
+
+    span: {
+      width: '24px',
+      height: '24px',
+      borderRadius: '1000px',
+      position: 'absolute',
+      top: '-7px',
+      backgroundColor: '$green500',
+      left: '31px',
+      textAlign: 'center',
+    }
+  },
 })

@@ -75,6 +75,7 @@ export const ProductInfo = styled('div', {
     border: 0,
     backgroundColor: '$gray800',
     color: '$green500',
-    textAlign: 'left'
+    textAlign: 'left',
+    cursor: 'pointer'
   }
 })

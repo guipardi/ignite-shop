@@ -6,7 +6,11 @@ import { useContext, useState } from 'react'
 import { KartContext } from '@/src/context/KartContext'
 
 export function KartModal() {
-  const { productsInKart } = useContext(KartContext)
+  const { productsInKart, deleteProduct } = useContext(KartContext)
+
+  function handleDeleteProduct(productName: string) {
+    deleteProduct(productName)
+  }
 
   return (
     <Dialog.Portal>
@@ -29,7 +33,7 @@ export function KartModal() {
 
                 <span>{product.price}</span>
 
-                <button>Remover</button>
+                <button onClick={() => handleDeleteProduct(product.name)}>Remover</button>
               </ProductInfo>
           </CartsContainer>
           )

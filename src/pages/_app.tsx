@@ -7,11 +7,14 @@ import { Container, Header } from "../styles/pages/app"
 import { Tote } from "phosphor-react"
 import { KartModal } from "../components/KartModal"
 import Link from "next/link"
-import { KartProvider } from "../context/KartContext"
+import { KartContext, KartProvider } from "../context/KartContext"
+import { useContext } from "react"
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { productsInKart } = useContext(KartContext)
+
   return (
     <KartProvider>
       <Container>
@@ -21,7 +24,12 @@ export default function App({ Component, pageProps }: AppProps) {
           </Link>
           <Dialog.Root>
             <Dialog.Trigger asChild={true}>
-              <div><Tote size={24}/></div>
+              <div>
+                <Tote size={24}/>
+                <KartContext.Consumer>
+                  {({ productsInKart }) => <span>{productsInKart.length}</span>}
+                </KartContext.Consumer>
+              </div>
             </Dialog.Trigger>
 
             <KartModal />
