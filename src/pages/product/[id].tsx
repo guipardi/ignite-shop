@@ -39,7 +39,7 @@ export default function Product({ product }: ProductProps) {
 
         <ProductDetails>
           <h1>{product.name}</h1>
-          <span>{product.price}</span>
+          <span>{priceFormatter.format(parseFloat(product.price))}</span>
 
           <p>{product.description}</p>
 
@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         id: product.id,
         name: product.name,
         imgUrl: product.images[0],
-        price: priceFormatter.format(price.unit_amount! / 100),
+        price: price.unit_amount! / 100,
         description: product.description,
         defaultPriceId: price.id,
       }

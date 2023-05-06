@@ -13,13 +13,15 @@ interface KartProviderProps {
 interface KartContext {
   addProductInKart: (product: Product) => void,
   productsInKart: Product[],
-  deleteProduct: (productName: string) => void
+  deleteProduct: (productName: string) => void,
+  amountValue: number
 }
 
 export const KartContext = createContext({} as KartContext)
 
 export function KartProvider({ children }: KartProviderProps) {
   const [productsInKart, setProductsInKart] = useState<Product[]>([])
+  const [amountValue, setAmountValue] = useState(0)
 
   function addProductInKart(product: Product) {
     const newProduct: Product = {
@@ -30,6 +32,7 @@ export function KartProvider({ children }: KartProviderProps) {
 
     setProductsInKart([...productsInKart, newProduct])
 
+    setAmountValue(parseFloat(product.price) + amountValue)
   }
 
   function deleteProduct(productName: string) {
@@ -42,7 +45,7 @@ export function KartProvider({ children }: KartProviderProps) {
 
   return (
     <KartContext.Provider
-      value={{ addProductInKart, productsInKart, deleteProduct }}
+      value={{ addProductInKart, productsInKart, deleteProduct, amountValue }}
     >
       {children}
     </KartContext.Provider>

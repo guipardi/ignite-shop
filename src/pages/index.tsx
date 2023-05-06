@@ -3,22 +3,21 @@ import { useKeenSlider } from "keen-slider/react"
 import { GetStaticProps } from "next";
 import { stripe } from "../lib/stripe";
 import { Stripe } from "stripe"
-import Link from "next/link"
-
-import Image from "next/image"
-import 'keen-slider/keen-slider.min.css'
 import { priceFormatter } from "../utils/formatter";
-import Head from "next/head";
 import { Tote } from "phosphor-react";
 import { useContext } from "react";
 import { KartContext } from "../context/KartContext";
+import Link from "next/link"
+import Head from "next/head";
+import Image from "next/image"
+import 'keen-slider/keen-slider.min.css'
 
 interface HomeProps {
   products: {
     id: string,
     name: string,
     imgUrl: string,
-    price: number,
+    price: string,
   }[]
 }
 
@@ -57,7 +56,7 @@ export default function Home({ products }: HomeProps) {
                 <footer>
                   <FooterDivInfo>
                     <strong>{product.name}</strong>
-                    <span>{product.price}</span>
+                    <span>{priceFormatter.format(parseFloat(product.price))}</span>
                   </FooterDivInfo>
                   <FooterButtonTote onClick={() => handleAddProductInKart(product)}>
                     <Tote size={24}/>
@@ -84,7 +83,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imgUrl: product.images[0],
-      price: priceFormatter.format(price.unit_amount! / 100),
+      price: price.unit_amount! / 100,
     }
   })
 
