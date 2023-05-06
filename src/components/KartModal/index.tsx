@@ -11,7 +11,7 @@ export function KartModal() {
 
   const { productsInKart, deleteProduct } = useContext(KartContext)
   
-  function handleDeleteProduct(productName: string) {
+  function handleDeleteProduct(productName: any) {
     deleteProduct(productName)
   }
 

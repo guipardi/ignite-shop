@@ -13,7 +13,7 @@ interface KartProviderProps {
 interface KartContext {
   addProductInKart: (product: Product) => void,
   productsInKart: Product[],
-  deleteProduct: (productName: string) => void,
+  deleteProduct: (product: string) => void,
   amountValue: number
 }
 
@@ -41,6 +41,14 @@ export function KartProvider({ children }: KartProviderProps) {
     })
 
     setProductsInKart(productsWithoutDeleted)
+
+    let amountWithoutDeleted = 0
+  
+    productsWithoutDeleted.forEach(product => {
+      amountWithoutDeleted += parseFloat(product.price)
+    })
+
+    setAmountValue(amountWithoutDeleted)
   }
 
   return (
