@@ -16,6 +16,7 @@ interface ProductProps {
     price: string
     description: string
     defaultPriceId: string
+    amount: number
   }
 }
 

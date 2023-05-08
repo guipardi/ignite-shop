@@ -28,7 +28,7 @@ export function KartProvider({ children }: KartProviderProps) {
   function addProductInKart(product: Product) {
     const itemIsAlreadyInKart = productsInKart.find(productInKart => (productInKart.id === product.id) != undefined)
 
-    if (itemIsAlreadyInKart !== undefined) {
+    if (itemIsAlreadyInKart) {
       itemIsAlreadyInKart.amount += 1
     } else {
       const newProduct: Product = {
@@ -46,19 +46,27 @@ export function KartProvider({ children }: KartProviderProps) {
   }
 
   function deleteProduct(productId: string) {
-    const productsWithoutDeleted = productsInKart.filter(product => {
-      return product.id != productId
+    const productToDelete = productsInKart.find(product => {
+      return product.id == productId
     })
 
-    setProductsInKart(productsWithoutDeleted)
+    if (productToDelete!.amount > 1) {
+      productToDelete!.amount -= 1
+    } else {
+      const productsWithoutDeleted = productsInKart.filter(product => {
+        return product.id !== productId
+      })  
 
-    let amountWithoutDeleted = 0
+      setProductsInKart(productsWithoutDeleted)
+    }
   
-    productsWithoutDeleted.forEach(product => {
-      amountWithoutDeleted += parseFloat(product.price)
+    let total = 0
+
+    productsInKart.forEach(product => {
+      total += parseFloat(product.price)
     })
 
-    setAmountValue(amountWithoutDeleted)
+    setAmountValue(total)
   }
 
   return (
