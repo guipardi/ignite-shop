@@ -4,6 +4,7 @@ interface Product {
   name: string,
   price: string,
   imgUrl: string,
+  id: string
 }
 
 interface KartProviderProps {
@@ -27,7 +28,8 @@ export function KartProvider({ children }: KartProviderProps) {
     const newProduct: Product = {
       name: product.name,
       price: product.price,
-      imgUrl: product.imgUrl
+      imgUrl: product.imgUrl,
+      id: product.id
     }
 
     setProductsInKart([...productsInKart, newProduct])
@@ -35,9 +37,9 @@ export function KartProvider({ children }: KartProviderProps) {
     setAmountValue(parseFloat(product.price) + amountValue)
   }
 
-  function deleteProduct(productName: string) {
+  function deleteProduct(productId: string) {
     const productsWithoutDeleted = productsInKart.filter(product => {
-      return product.name !== productName
+      return product.id != productId
     })
 
     setProductsInKart(productsWithoutDeleted)

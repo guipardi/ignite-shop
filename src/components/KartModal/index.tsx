@@ -9,8 +9,8 @@ import Image from 'next/image'
 export function KartModal() {
   const { productsInKart, deleteProduct, amountValue } = useContext(KartContext)
   
-  function handleDeleteProduct(productName: any) {
-    deleteProduct(productName)
+  function handleDeleteProduct(productId: string) {
+    deleteProduct(productId)
   }
 
   function handleCheckout() {
@@ -29,12 +29,12 @@ export function KartModal() {
             {productsInKart.length > 0 &&
               productsInKart.map((product) => {
                 return (
-                  <CartsContainer key={product.name}>
+                  <CartsContainer key={product.id}>
                     <Image src={product.imgUrl} alt="" width={24} height={24} />
                     <ProductInfo>
                       <p>{product.name}</p>
                       <span>{priceFormatter.format(parseFloat(product.price))}</span>
-                      <button onClick={() => handleDeleteProduct(product.name)}>Remover</button>
+                      <button onClick={() => handleDeleteProduct(product.id)}>Remover</button>
                     </ProductInfo>
                   </CartsContainer>
                 )
