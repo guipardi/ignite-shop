@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { X } from 'phosphor-react'
-import { AmountDiv, CartsContainer, CheckoutButton, CloseButton, Content, CostDiv, FinalizationDiv, ProductInfo, Separator, Title } from './styles'
+import { AmountDiv, CartsContainer, CheckoutButton, CloseButton, Content, CostDiv, FinalizationDiv, ProductInfo, Separator, SpanAmount, Title } from './styles'
 import { useContext } from 'react'
 import { KartContext } from '@/src/context/KartContext'
 import { priceFormatter } from '@/src/utils/formatter'
@@ -30,6 +30,7 @@ export function KartModal() {
               productsInKart.map((product) => {
                 return (
                   <CartsContainer key={product.id}>
+                    <SpanAmount>{product.amount}</SpanAmount>
                     <Image src={product.imgUrl} alt="" width={24} height={24} />
                     <ProductInfo>
                       <p>{product.name}</p>

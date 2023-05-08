@@ -55,6 +55,22 @@ export const CartsContainer = styled('div', {
   },
 });
 
+export const SpanAmount = styled('span', {
+  position: 'absolute',
+  top: '7.225rem',
+  left: '2.5225rem',
+
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  width: '2rem',
+  height: '2rem',
+  backgroundColor: '$green500',
+  borderRadius: '100px',
+  fontWeight: 'bold',
+})
+
 export const ProductInfo = styled('div', {
   display: 'flex',
   flexDirection: 'column',

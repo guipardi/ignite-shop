@@ -4,7 +4,8 @@ interface Product {
   name: string,
   price: string,
   imgUrl: string,
-  id: string
+  id: string,
+  amount: number,
 }
 
 interface KartProviderProps {
@@ -25,14 +26,21 @@ export function KartProvider({ children }: KartProviderProps) {
   const [amountValue, setAmountValue] = useState(0)
 
   function addProductInKart(product: Product) {
-    const newProduct: Product = {
-      name: product.name,
-      price: product.price,
-      imgUrl: product.imgUrl,
-      id: product.id
-    }
+    const itemIsAlreadyInKart = productsInKart.find(productInKart => (productInKart.id === product.id) != undefined)
 
-    setProductsInKart([...productsInKart, newProduct])
+    if (itemIsAlreadyInKart !== undefined) {
+      itemIsAlreadyInKart.amount += 1
+    } else {
+      const newProduct: Product = {
+        name: product.name,
+        price: product.price,
+        imgUrl: product.imgUrl,
+        id: product.id,
+        amount: 1
+      }
+  
+      setProductsInKart([...productsInKart, newProduct])
+    }
 
     setAmountValue(parseFloat(product.price) + amountValue)
   }
