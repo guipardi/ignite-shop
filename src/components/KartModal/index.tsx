@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { X } from 'phosphor-react'
-import { AmountDiv, CartsContainer, CheckoutButton, CloseButton, Content, CostDiv, FinalizationDiv, ProductInfo, Separator, SpanAmount, Title } from './styles'
+import { MinusCircle, PlusCircle, X } from 'phosphor-react'
+import { AmountDiv, ButtonsContainer, CartsContainer, CheckoutButton, CloseButton, Content, CostDiv, FinalizationDiv, ProductInfo, Separator, SpanAmount, Title } from './styles'
 import { useContext } from 'react'
 import { KartContext } from '@/src/context/KartContext'
 import { priceFormatter } from '@/src/utils/formatter'
@@ -35,7 +35,10 @@ export function KartModal() {
                     <ProductInfo>
                       <p>{product.name}</p>
                       <span>{priceFormatter.format(parseFloat(product.price))}</span>
-                      <button onClick={() => handleDeleteProduct(product.id)}>Remover</button>
+                      <ButtonsContainer>
+                        <button onClick={() => handleDeleteProduct(product.id)}><MinusCircle size={24}/></button>
+                        <button onClick={() => handleDeleteProduct(product.id)}><PlusCircle size={24}/></button>
+                      </ButtonsContainer>
                     </ProductInfo>
                   </CartsContainer>
                 )

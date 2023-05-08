@@ -46,11 +46,12 @@ export const CartsContainer = styled('div', {
   gap: '20px',
   marginTop: '2rem',
   marginLeft: '3rem',
+  height: '100px',
 
   img: {
     gridColumn: '1', // define que a imagem ocupa a primeira coluna
     width: '100px',
-    height: '100px',
+    height: '100%',
     background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   },
 });
@@ -74,7 +75,8 @@ export const SpanAmount = styled('span', {
 export const ProductInfo = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '1.5rem',
+  gap: '1rem',
+  height: '100px',
 
   p: {
     color: '$gray300',
@@ -86,6 +88,12 @@ export const ProductInfo = styled('div', {
     fontSize: '18px',
     fontWeight: 'bold',
   },
+})
+
+export const ButtonsContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '1rem',
 
   button: {
     border: 0,
