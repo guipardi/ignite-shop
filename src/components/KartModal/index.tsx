@@ -7,12 +7,14 @@ import { priceFormatter } from '@/src/utils/formatter'
 import Image from 'next/image'
 
 export function KartModal() {
-  const { amountValue } = useContext(KartContext)
-
-  const { productsInKart, deleteProduct } = useContext(KartContext)
+  const { productsInKart, deleteProduct, amountValue } = useContext(KartContext)
   
   function handleDeleteProduct(productName: any) {
     deleteProduct(productName)
+  }
+
+  function handleCheckout() {
+    console.log('Finalizando a compra...')
   }
 
   return (
@@ -47,7 +49,7 @@ export function KartModal() {
               <p>Valor total</p>
               <strong>{priceFormatter.format(amountValue)}</strong>
             </CostDiv>
-            <CheckoutButton>Finalizar Compra</CheckoutButton>
+            <CheckoutButton onClick={handleCheckout}>Finalizar Compra</CheckoutButton>
           </FinalizationDiv>
         </Separator>
       </Content>
