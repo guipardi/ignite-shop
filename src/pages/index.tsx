@@ -18,6 +18,7 @@ interface HomeProps {
     name: string,
     imgUrl: string,
     price: string,
+    amount: number
   }[]
 }
 
@@ -32,6 +33,7 @@ export default function Home({ products }: HomeProps) {
   })
 
   function handleAddProductInCart(product: any) {
+    console.log(product)
     addProductInCart(product)
   }
 
@@ -84,6 +86,7 @@ export const getStaticProps: GetStaticProps = async () => {
       name: product.name,
       imgUrl: product.images[0],
       price: price.unit_amount! / 100,
+      amount: 1
     }
   })
 
