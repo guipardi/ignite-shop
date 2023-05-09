@@ -5,18 +5,18 @@ import * as Dialog from "@radix-ui/react-dialog"
 import logoImg from '../assets/logo.svg'
 import { Container, Header } from "../styles/pages/app"
 import { Tote } from "phosphor-react"
-import { KartModal } from "../components/KartModal"
+import { CartModal } from "../components/CartModal"
 import Link from "next/link"
-import { KartContext, KartProvider } from "../context/KartContext"
+import { CartContext, CartProvider } from "../context/CartContext"
 import { useContext } from "react"
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { productsInKart } = useContext(KartContext)
+  const { productsInCart } = useContext(CartContext)
 
   return (
-    <KartProvider>
+    <CartProvider>
       <Container>
         <Header>
           <Link href='/'>
@@ -26,19 +26,19 @@ export default function App({ Component, pageProps }: AppProps) {
             <Dialog.Trigger asChild={true}>
               <div>
                 <Tote size={24}/>
-                <KartContext.Consumer>
-                  {({ productsInKart }) => <span>{productsInKart.length}</span>}
-                </KartContext.Consumer>
+                <CartContext.Consumer>
+                  {({ productsInCart }) => <span>{productsInCart.length}</span>}
+                </CartContext.Consumer>
               </div>
             </Dialog.Trigger>
 
-            <KartModal />
+            <CartModal />
           </Dialog.Root>
         </Header>
         
         <Component {...pageProps} />
      
       </Container>
-    </KartProvider>
+    </CartProvider>
   )
 }

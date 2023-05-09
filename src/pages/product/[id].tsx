@@ -6,7 +6,7 @@ import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/p
 import { priceFormatter } from "@/src/utils/formatter";
 import { useContext, useState } from "react";
 import Head from "next/head";
-import { KartContext } from "@/src/context/KartContext";
+import { CartContext } from "@/src/context/CartContext";
 
 interface ProductProps {
   product: {
@@ -21,10 +21,10 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const { addProductInKart } = useContext(KartContext)
+  const { addProductInCart } = useContext(CartContext)
 
-  function handleAddProductInKart() {
-    addProductInKart(product)
+  function handleAddProductInCart() {
+    addProductInCart(product)
   }
 
   return (
@@ -44,7 +44,7 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button onClick={handleAddProductInKart}>
+          <button onClick={handleAddProductInCart}>
             Adicionar ao carrinho
           </button>
         </ProductDetails>

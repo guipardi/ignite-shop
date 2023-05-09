@@ -2,12 +2,12 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { MinusCircle, PlusCircle, X } from 'phosphor-react'
 import { AmountDiv, ButtonsContainer, CartsContainer, CheckoutButton, CloseButton, Content, CostDiv, FinalizationDiv, ProductInfo, Separator, SpanAmount, Title } from './styles'
 import { useContext } from 'react'
-import { KartContext } from '@/src/context/KartContext'
+import { CartContext } from '@/src/context/CartContext'
 import { priceFormatter } from '@/src/utils/formatter'
 import Image from 'next/image'
 
-export function KartModal() {
-  const { productsInKart, deleteProduct, amountValue } = useContext(KartContext)
+export function CartModal() {
+  const { productsInCart, deleteProduct, amountValue } = useContext(CartContext)
   
   function handleDeleteProduct(productId: string) {
     deleteProduct(productId)
@@ -26,8 +26,8 @@ export function KartModal() {
         </CloseButton>
         <Separator>
           <div>
-            {productsInKart.length > 0 &&
-              productsInKart.map((product) => {
+            {productsInCart.length > 0 &&
+              productsInCart.map((product) => {
                 return (
                   <CartsContainer key={product.id}>
                     <SpanAmount>{product.amount}</SpanAmount>
@@ -47,7 +47,7 @@ export function KartModal() {
           <FinalizationDiv>
             <AmountDiv>
               <p>Quantidade</p>
-              <p>{productsInKart.length} itens</p>
+              <p>{productsInCart.length} itens</p>
             </AmountDiv>
             <CostDiv>
               <p>Valor total</p>

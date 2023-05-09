@@ -6,7 +6,7 @@ import { Stripe } from "stripe"
 import { priceFormatter } from "../utils/formatter";
 import { Tote } from "phosphor-react";
 import { useContext } from "react";
-import { KartContext } from "../context/KartContext";
+import { CartContext } from "../context/CartContext";
 import Link from "next/link"
 import Head from "next/head";
 import Image from "next/image"
@@ -22,7 +22,7 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
-  const { addProductInKart } = useContext(KartContext)
+  const { addProductInCart } = useContext(CartContext)
 
   const [sliderRef] = useKeenSlider({
     slides: {
@@ -31,8 +31,8 @@ export default function Home({ products }: HomeProps) {
     }
   })
 
-  function handleAddProductInKart(product: any) {
-    addProductInKart(product)
+  function handleAddProductInCart(product: any) {
+    addProductInCart(product)
   }
 
   return (
@@ -58,7 +58,7 @@ export default function Home({ products }: HomeProps) {
                     <strong>{product.name}</strong>
                     <span>{priceFormatter.format(parseFloat(product.price))}</span>
                   </FooterDivInfo>
-                  <FooterButtonTote onClick={() => handleAddProductInKart(product)}>
+                  <FooterButtonTote onClick={() => handleAddProductInCart(product)}>
                     <Tote size={24}/>
                   </FooterButtonTote>
                 </footer>
