@@ -13,7 +13,7 @@ import { useContext } from "react"
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { productsInCart } = useContext(CartContext)
+  const { itensAmount } = useContext(CartContext)
 
   return (
     <CartProvider>
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <div>
                 <Tote size={24}/>
                 <CartContext.Consumer>
-                  {({ productsInCart }) => <span>{productsInCart.length}</span>}
+                  {({ itensAmount }) => <span>{itensAmount}</span>}
                 </CartContext.Consumer>
               </div>
             </Dialog.Trigger>

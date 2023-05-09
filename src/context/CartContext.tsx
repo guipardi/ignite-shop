@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 interface Product {
   name: string,
@@ -16,7 +16,8 @@ interface CartContext {
   addProductInCart: (product: Product) => void,
   productsInCart: Product[],
   deleteProduct: (product: string) => void,
-  amountValue: number
+  amountValue: number,
+  itensAmount: number,
 }
 
 export const CartContext = createContext({} as CartContext)
@@ -24,16 +25,39 @@ export const CartContext = createContext({} as CartContext)
 export function CartProvider({ children }: CartProviderProps) {
   const [productsInCart, setProductsInCart] = useState<Product[]>([])
   const [amountValue, setAmountValue] = useState(0)
+  const [itensAmount, setItensAmount] = useState(0)
+
+  useEffect(() => {
+    let total = 0
+
+    productsInCart.forEach((product) => {
+      total += product.amount
+    })
+    
+    setItensAmount(total)
+  }, [productsInCart])
+  
+
+  useEffect(() => {
+    let total = 0
+
+    productsInCart.forEach((product) => {
+      total += parseInt(product.price) * product.amount
+    })
+
+    setAmountValue(total)
+  }, [productsInCart])
 
   function addProductInCart(product: Product) {
     setProductsInCart((prevState) => {
       const exist = prevState.find((productInCart) => productInCart.id === product.id);
 
-      if (exist == undefined) {
-        return [...prevState, { ...product, amount: 1 }];
+      if (!exist) {
+        return [...prevState, product];
       } else {
         return prevState.map((productInCart) => {
           if (productInCart.id === product.id) {
+  
             return { ...productInCart, amount: productInCart.amount + 1 };
           } else {
             return productInCart;
@@ -72,7 +96,7 @@ export function CartProvider({ children }: CartProviderProps) {
 
   return (
     <CartContext.Provider
-      value={{ addProductInCart, productsInCart, deleteProduct, amountValue }}
+      value={{ addProductInCart, productsInCart, deleteProduct, amountValue, itensAmount }}
     >
       {children}
     </CartContext.Provider>

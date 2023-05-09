@@ -47,6 +47,7 @@ export const CartsContainer = styled('div', {
   marginTop: '2rem',
   marginLeft: '3rem',
   height: '100px',
+  position: 'relative',
 
   img: {
     gridColumn: '1', // define que a imagem ocupa a primeira coluna
@@ -58,8 +59,8 @@ export const CartsContainer = styled('div', {
 
 export const SpanAmount = styled('span', {
   position: 'absolute',
-  top: '7.225rem',
-  left: '2.5225rem',
+  top: '-1rem',
+  left: '-1rem',
 
   display: 'flex',
   justifyContent: 'center',
